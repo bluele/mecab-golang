@@ -4,7 +4,7 @@ A Golang wrapper for [mecab](//mecab.googlecode.com/svn/trunk/mecab/doc/index.ht
 
 ## Dependencies
 
-mecab-golang needs [mecab](//mecab.googlecode.com/svn/trunk/mecab/doc/index.html#install). 
+mecab-golang needs [mecab 0.99](//mecab.googlecode.com/svn/trunk/mecab/doc/index.html#install). 
 
 Please install it.
 
