@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/bluele/mecab-golang"
-	"time"
+	"strings"
 )
 
 var str = "すもももももももものうち"
@@ -36,9 +36,11 @@ func parseToNode(m *mecab.MeCab) {
 	defer lt.Destroy()
 
 	node := tg.ParseToNode(lt)
-
 	for {
-		fmt.Println(fmt.Sprintf("%s %s", node.Surface(), node.Feature()))
+		features := strings.Split(node.Feature(), ",")
+		if features[0] == "名詞" {
+			fmt.Println(fmt.Sprintf("%s %s", node.Surface(), node.Feature()))
+		}
 		if node.Next() != nil {
 			break
 		}
@@ -46,15 +48,11 @@ func parseToNode(m *mecab.MeCab) {
 }
 
 func main() {
-	m, err := mecab.New("-Ochasen")
+	m, err := mecab.New("-Owakati")
 	if err != nil {
 		panic(err)
 	}
 	defer m.Destroy()
-	number := int(1e5)
-	for i := 0; i < number; i++ {
-		go parse(m)
-		go parseToNode(m)
-	}
-	time.Sleep(time.Second)
+	parse(m)
+	parseToNode(m)
 }
