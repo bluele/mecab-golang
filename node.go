@@ -29,7 +29,7 @@ func (node *Node) Next() error {
 // surface string
 func (node *Node) Surface() string {
 	current := node.current
-	return C.GoString(current.surface)[:int(current.length)]
+	return C.GoStringN(current.surface, C.int(current.length))
 }
 
 // feature string
