@@ -5,6 +5,7 @@ package mecab
 import "C"
 import (
 	"errors"
+	"fmt"
 	"unsafe"
 )
 
@@ -21,7 +22,7 @@ func New(option ...string) (*MeCab, error) {
 	defer C.free(unsafe.Pointer(_opt))
 	_model := C.mecab_model_new2(_opt)
 	if _model == nil {
-		return nil, errors.New("mecab_model is not created.")
+		return nil, fmt.Errorf("mecab_model is not created: %v", C.GoString(C.mecab_strerror(nil)))
 	}
 	return &MeCab{
 		model: _model,

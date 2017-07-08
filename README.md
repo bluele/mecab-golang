@@ -22,7 +22,7 @@ If you installed `mecab-config` (check `which mecab-config`), do the following c
 
 ```
 $ export CGO_LDFLAGS="`mecab-config --libs`"
-$ export CGO_FLAGS="`mecab-config --inc-dir`"
+$ export CGO_CFLAGS="-I`mecab-config --inc-dir`"
 $ go get github.com/bluele/mecab-golang
 ```
 
