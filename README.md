@@ -1,5 +1,7 @@
 # mecab-golang
 
+[![CircleCI](https://circleci.com/gh/bluele/mecab-golang/tree/master.svg?style=svg)](https://circleci.com/gh/bluele/mecab-golang/tree/master)
+
 A Golang wrapper for [mecab](//mecab.googlecode.com/svn/trunk/mecab/doc/index.html).
 
 ## Dependencies
