@@ -1,0 +1,14 @@
+version: 2
+jobs:
+    build:
+        working_directory: /go/src/github.com/bluele/mecab-golang
+        docker:
+            - image: bluele/mecab-golang.docker
+        steps:
+            - checkout
+            - run:
+                name: "run an example"
+                command: |
+                    export CGO_CFLAGS="-I`mecab-config --inc-dir`"
+                    export CGO_LDFLAGS="`mecab-config --libs`"
+                    go run examples/simple.go
