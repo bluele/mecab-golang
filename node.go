@@ -5,6 +5,9 @@ package mecab
 import "C"
 import (
 	"errors"
+	"fmt"
+	"strconv"
+	"unicode/utf8"
 )
 
 type Node struct {
@@ -105,4 +108,11 @@ func (node *Node) Wcost() int {
 // best accumulative cost from bos node to this node.
 func (node *Node) Cost() int {
 	return int(node.current.cost)
+}
+
+// start pos in the text.
+func (node *Node) StartPos() int {
+	pFirstNode, _ := strconv.Atoi(fmt.Sprintf("%d", node.head.surface))
+	pCurrentNode, _ := strconv.Atoi(fmt.Sprintf("%d", node.current.surface))
+	return utf8.RuneCountInString(C.GoStringN(node.head.surface, C.int(pCurrentNode-pFirstNode)))
 }
